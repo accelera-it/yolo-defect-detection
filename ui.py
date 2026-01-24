@@ -14,10 +14,10 @@ if uploaded_file is None:
     st.stop()   
 else:
     image = Image.open(uploaded_file)
-    st.image(image, caption="Uploaded Image", use_column_width=True)
+    st.image(image, caption="Uploaded Image")
 
-model = YOLO("yolo11n.pt")
+model = YOLO("models/yolo11n.pt")
 results = model(image)
 
 st.write("### Detection Results")
-st.image(results[0].plot(), use_column_width=True)
+st.image(results[0].plot())
