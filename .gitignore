@@ -214,8 +214,4 @@ marimo/_lsp/
 __marimo__/
 
 # Streamlit
-.streamlit/secrets.toml
-
-/dataset/labels
-/dataset/images
-
+.streamlit/secrets.toml 

@@ -17,7 +17,15 @@ else:
     st.image(image, caption="Uploaded Image")
 
 model = YOLO("models/yolo11n.pt")
-results = model(image)
+trains = model(image)
 
+# if st.button("Train model"):
+    # model = YOLO("models/yolo11n.pt",verbose=True)
+    # trains = model.train(data="dataset/data.yaml", epochs=3,device="cpu")
+    # st.success("Training finished")
+    # st.write("### Training Results")
+    # st.json(trains)
+model = YOLO("models/yolo11n.pt",verbose=True)
+results = model(image)
 st.write("### Detection Results")
 st.image(results[0].plot())
