@@ -1,0 +1,7 @@
+ultralytics[export]
+
+opencv-python 
+numpy
+
+streamlit
+Pillow

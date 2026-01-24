@@ -1,0 +1,14 @@
+path: dataset
+
+train: images/train
+val: images/val
+test: images/test
+
+nc: 6
+names:
+  - healthy_potato
+  - potato_rot
+  - potato_spot
+  - healthy_carrot
+  - carrot_crack
+  - carrot_rot
