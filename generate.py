@@ -21,10 +21,14 @@ def yolo_bbox(cx, cy, w, h):
         h / IMG_SIZE
     )
 
-# Create folders
+# Create folders, removing images and labels left by an earlier run:
+# the split is random, so old files would otherwise stay in other splits
 for split in SPLIT:
-    (BASE_DIR / "images" / split).mkdir(parents=True, exist_ok=True)
-    (BASE_DIR / "labels" / split).mkdir(parents=True, exist_ok=True)
+    for kind, pattern in (("images", "*.jpg"), ("labels", "*.txt")):
+        folder = BASE_DIR / kind / split
+        folder.mkdir(parents=True, exist_ok=True)
+        for old in folder.glob(pattern):
+            old.unlink()
 
 def generate_image(idx, split):
     img = np.ones((IMG_SIZE, IMG_SIZE, 3), dtype=np.uint8) * 255
