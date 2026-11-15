@@ -16,8 +16,9 @@ else:
     image = Image.open(uploaded_file)
     st.image(image, caption="Uploaded Image")
 
-model = YOLO("models/yolo11n.pt")
-trains = model(image)
+@st.cache_resource
+def load_model():
+    return YOLO("models/yolo11n.pt")
 
 # if st.button("Train model"):
     # model = YOLO("models/yolo11n.pt",verbose=True)
@@ -25,7 +26,6 @@ trains = model(image)
     # st.success("Training finished")
     # st.write("### Training Results")
     # st.json(trains)
-model = YOLO("models/yolo11n.pt",verbose=True)
-results = model(image)
+results = load_model()(image)
 st.write("### Detection Results")
-st.image(results[0].plot())
+st.image(results[0].plot(), channels="BGR")
